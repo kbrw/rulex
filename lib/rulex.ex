@@ -33,11 +33,15 @@ defmodule Rulex do
         apply_rules(param,for(r<-@rules,do: {r,false})|>Enum.into(%{}),acc)
     end
   end
-  defmacro defrule({name,_,[param,acc]},[do: body]) do
+  def rule_fun(name,param_quote,acc_quote,body,guard_quote \\ true) do
     quote do
       @rules [unquote(name)|@rules]
-      def apply_rules(unquote(param)=param,%{unquote(name)=>false}=apply_map,unquote(acc)), do:
+      def apply_rules(unquote(param_quote)=param,%{unquote(name)=>false}=apply_map,unquote(acc_quote)) when unquote(guard_quote), do:
         apply_rules(param,%{apply_map|unquote(name)=>true},unquote(body))
     end
-  end 
+  end
+  defmacro defrule({:when ,_,[{name,_,[param,acc]},guard]},[do: body]), do:
+    rule_fun(name,param,acc,body,guard)
+  defmacro defrule({name,_,[param,acc]},[do: body]), do:
+    rule_fun(name,param,acc,body)
 end
