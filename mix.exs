@@ -3,11 +3,16 @@ defmodule Rulex.Mixfile do
 
   def project do
     [app: :rulex,
-     version: "0.0.1",
+     version: "0.1.0",
      elixir: "~> 1.0.0",
+     docs: [
+       main: "Rulex",
+       source_url: "https://github.com/awetzel/rulex",
+       source_ref: "master"
+     ],
      description: description,
      package: package,
-     deps: []]
+     deps: [{:ex_doc, only: :dev}] ]
   end
 
   def application do
@@ -17,7 +22,7 @@ defmodule Rulex.Mixfile do
   defp package do
     [ contributors: ["Arnaud Wetzel"],
       licenses: ["The MIT License (MIT)"],
-      links: %{ "GitHub"=>"https://github.com/awetzel/rulex" } ]
+      links: %{ "Source"=>"https://github.com/awetzel/rulex", "Doc"=>"http://hexdocs.pm/rulex"} ]
   end
 
   defp description do

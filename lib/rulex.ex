@@ -2,7 +2,7 @@ defmodule Rulex do
   @moduledoc """
   Rulex allow you to define rules just as you define functions, a simple macro
   wrapper add the needed code in order to not match the same rule twice.
-  It creates a recursive function `apply_rules` which return the accumulator
+  It creates a recursive function `apply_rules` which returns the accumulator
   when no rule match.
   
   Example usage : 
@@ -33,6 +33,7 @@ defmodule Rulex do
         apply_rules(param,for(r<-@rules,do: {r,false})|>Enum.into(%{}),acc)
     end
   end
+  @doc false
   def rule_fun(name,param_quote,acc_quote,body,guard_quote \\ true) do
     quote do
       @rules [unquote(name)|@rules]
@@ -40,6 +41,7 @@ defmodule Rulex do
         apply_rules(param,%{apply_map|unquote(name)=>true},unquote(body))
     end
   end
+  @doc false
   defmacro defrule({:when ,_,[{name,_,[param,acc]},guard]},[do: body]), do:
     rule_fun(name,param,acc,body,guard)
   defmacro defrule({name,_,[param,acc]},[do: body]), do:
