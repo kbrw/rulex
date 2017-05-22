@@ -1,7 +1,7 @@
 Rulex
 =====
 
-[![Build Status](https://travis-ci.org/awetzel/rulex.svg?branch=master)](https://travis-ci.org/awetzel/rulex)
+[![Build Status](https://travis-ci.org/kbrw/rulex.svg?branch=master)](https://travis-ci.org/kbrw/rulex)
 
 This application allows to do very simple rule handler using Elixir pattern
 matching :
