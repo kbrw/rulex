@@ -10,8 +10,8 @@ defmodule Rulex.Mixfile do
        source_url: "https://github.com/awetzel/rulex",
        source_ref: "master"
      ],
-     description: description,
-     package: package,
+     description: description(),
+     package: package(),
      deps: [{:ex_doc, only: :dev}] ]
   end
 
